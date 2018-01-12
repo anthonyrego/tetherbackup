@@ -11,17 +11,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-var srcDir string
-var srcLastMod time.Time
-
-func getLastModifiedTime(path string) time.Time {
-	srcInfo, err := os.Stat(path)
-	if err != nil {
-		panic(err)
-	}
-	return srcInfo.ModTime()
-}
-
 func watchDirectory(path string, destinations []string) {
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
